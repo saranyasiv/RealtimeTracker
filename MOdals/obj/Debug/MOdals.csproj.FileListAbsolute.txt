@@ -1,0 +1,11 @@
+F:\VehicleTracking\VehicleTracking\MOdals\bin\Debug\MOdals.dll
+F:\VehicleTracking\VehicleTracking\MOdals\bin\Debug\MOdals.pdb
+F:\VehicleTracking\VehicleTracking\MOdals\obj\Debug\MOdals.csproj.CoreCompileInputs.cache
+F:\VehicleTracking\VehicleTracking\MOdals\obj\Debug\MOdals.dll
+F:\VehicleTracking\VehicleTracking\MOdals\obj\Debug\MOdals.pdb
+E:\backup\VehicleTracking\VehicleTracking\MOdals\bin\Debug\MOdals.dll
+E:\backup\VehicleTracking\VehicleTracking\MOdals\bin\Debug\MOdals.pdb
+E:\backup\VehicleTracking\VehicleTracking\MOdals\obj\Debug\MOdals.csprojAssemblyReference.cache
+E:\backup\VehicleTracking\VehicleTracking\MOdals\obj\Debug\MOdals.csproj.CoreCompileInputs.cache
+E:\backup\VehicleTracking\VehicleTracking\MOdals\obj\Debug\MOdals.dll
+E:\backup\VehicleTracking\VehicleTracking\MOdals\obj\Debug\MOdals.pdb
