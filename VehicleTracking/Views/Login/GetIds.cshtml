@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MOdals.Login>
+@{
+    ViewBag.Title = "GetIds";
+}
+
+<h2>GetIds</h2>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+    </tr>
+}

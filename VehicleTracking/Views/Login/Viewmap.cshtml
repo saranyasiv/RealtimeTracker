@@ -1,0 +1,129 @@
+﻿@model IEnumerable<MOdals.Login>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<h1>welcome @Session["UserName"]</h1>
+<div class="mapdiv">
+    <div id="map"></div>
+</div>
+<a href="/login" id="update">Log Out</a>
+<input type="hidden" value="@Session["ID"]" id="newid" />
+@foreach (var item in Model)
+{
+<th>
+    <td>
+        <button onclick="change(@Html.DisplayFor(modelItem => item.ID));">@Html.DisplayFor(modelItem => item.Username)</button>
+    </td>
+</th>
+}
+   
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @*<script>
+        
+    </script>*@
+    <style type="text/css">
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+        }
+
+        .mapdiv {
+            padding: 40px;
+        }
+        #update {
+            float: right;
+            margin: 20px;
+        }
+    </style>
+    <script>
+        var counter = 0;
+        var lat;
+        var lng;
+        var map;
+        var marker;
+        var interval = setInterval(httpGet, 5000);
+        function httpGet() {
+            $.ajax({
+                type: "GET",
+                url: "/Login/Mapview",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response_txt) {
+                    refresh(response_txt[newid].lat, response_txt[newid].lon);
+                    //alert(response_txt.lat);
+                },
+                failure: function (response_txt) {
+                },
+                error: function (response_txt) {
+                    alert(response_txt.isNaN);
+                }
+            });
+        }
+        function httpGetlist() {
+            $.ajax({
+                type: "GET",
+                url: "/Login/GetIds",
+                //contentType: "application/json",
+                //dataType: "json",
+                success: function (response_txt) {
+                    alert(response_txt);
+                },
+                failure: function (response_txt) {
+                },
+                error: function (response_txt) {
+                    alert(response_txt);
+                }
+            });
+        }
+        function change(ID) {
+            newid = ID;
+        }
+
+        $(document).ready(function () {
+            var newid = $("#newid").val();
+            initMap();
+            httpGetlist();
+        });
+
+
+        function initMap() {
+            var lat;
+            var lng;
+            if (isNaN(lat) || isNaN(lng)) {
+                lat = 76.267303;
+                lng = 9.931233;
+            }
+
+            const location = { lat: lat, lng: lng };
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: location,
+            });
+
+            //marker.position(location);
+            marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+        }
+
+        function refresh(lat, lng) {
+
+            if (isNaN(lat) || isNaN(lng)) {
+                lat = 76.267303;
+                lng = 9.931233;
+            }
+            const location = { lat: lat, lng: lng };
+            map.panTo(location);
+
+            //marker.position(location);
+            marker.setPosition(location);
+            
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwc8d3LuoNQBi9RP3V07w8BmudnUKGudk&callback=initMap&libraries=&v=weekly"
+            async></script>
