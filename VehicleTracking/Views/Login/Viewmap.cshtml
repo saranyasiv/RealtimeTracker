@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<h1>welcome @ViewData["username"]</h1>
+<div class="mapdiv">
+    <div id="map"></div>
+</div>
+<button id="update">Log Out</button>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    var counter = 0;
+    var lat;
+    var lng;
+    var interval = setInterval(httpGet, 5000);
+    function httpGet() {
+        $.ajax({
+            type: "GET",
+            url: "/Login/Mapview",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (response_txt) {
+                    refresh(response_txt.lat, response_txt.lon);
+                alert(response_txt.lat);
+            },
+            failure: function (response_txt) {
+            },
+            error: function (response_txt) {
+                alert(response_txt.isNaN);
+            }
+        });
+    }
+</script>
+<style type="text/css">
+    /* Set the size of the div element that contains the map */
+    #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+    }
+
+    .mapdiv {
+        padding: 40px;
+    }
+</style>
+<script>
+
+    var map;
+    var marker;
+    $(document).ready(function () {
+        initMap();
+    });
+
+
+    function initMap() {
+        var lat;
+        var lng;
+        if (isNaN(lat) || isNaN(lng)) {
+            lat = 76.267303;
+            lng = 9.931233;
+        }
+
+        const location = { lat: lat, lng: lng };
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: location,
+        });
+
+        //marker.position(location);
+        marker = new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
+
+    function refresh( lat, lng) {
+       
+        if (isNaN(lat) || isNaN(lng)) {
+            lat = 76.267303;
+            lng = 9.931233;
+        }
+
+        const location = { lat: lat, lng: lng };
+        map.panTo(location);
+
+
+        //marker.position(location);
+        marker.setPosition(location);
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwc8d3LuoNQBi9RP3V07w8BmudnUKGudk&callback=initMap&libraries=&v=weekly"
+        async></script>

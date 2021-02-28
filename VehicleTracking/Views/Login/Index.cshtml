@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MOdals.Locationinfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.lat)
+        <td>
+            @Html.DisplayFor(modelItem => Model.LastOrDefault().lat)
+        </td>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lon)
+            @Html.DisplayFor(modelItem => Model.LastOrDefault().lon)
+        </th>
+        <th></th>
+    </tr>
+</table>

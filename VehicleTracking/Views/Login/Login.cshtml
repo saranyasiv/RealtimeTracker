@@ -1,0 +1,153 @@
+﻿@model MOdals.Login
+
+@{
+    Layout = null;
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <section class="login">
+        <div class="form-horizontal">
+            <h2>Login</h2>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control txt_user" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control  txt_pwd" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="btn_block">
+                    <button class="btn_login">Login</button>
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+    </section>
+}
+<style>
+    .login {
+        max-width: 435px;
+        margin: 100px auto;
+        background-color: #fff;
+        padding: 25px;
+        box-shadow: 0 2px 14px 0 rgb(0 0 0 / 25%);
+        padding: 50px 100px;
+    }
+
+    .Login_sec {
+        width: auto;
+        height: auto;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 35px;
+        margin: 20px 0px;
+    }
+
+    .txt_pwd {
+        max-width: 100%;
+        height: 76px;
+        border-radius: 10px;
+        border: solid 2px #0291ce;
+        width: 100%;
+        outline: none;
+        margin: 10px 0px;
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.3333333;
+    }
+
+    .txt_user {
+        max-width: 100%;
+        height: 76px;
+        border-radius: 10px;
+        border: solid 2px #0291ce;
+        width: 100%;
+        outline: none;
+        margin: 10px 0px;
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.3333333;
+    }
+
+    label {
+        color: #333;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    button {
+        width: 300px;
+        height: 60px;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 1;
+        text-align: center;
+        color: #fff;
+        border-radius: 38px;
+        border: none;
+        max-width: 100%;
+        background-color: #0291ce;
+        margin: 15px 0px;
+    }
+
+    .btn_block {
+        text-align: center;
+    }
+
+    span {
+        color: #cd1422;
+    }
+
+    .invalid_cred {
+        text-align: center;
+    }
+
+    #login-pwd-eye {
+        float: right;
+        position: relative;
+        margin-top: -66px;
+        margin-right: 6px;
+        padding: 7px 16px;
+        font-size: 25px;
+        color: #6d6d6d;
+    }
+
+        #login-pwd-eye:focus {
+            outline-offset: -7px;
+            outline: 2px solid #002bff;
+        }
+
+    button:focus {
+        background-color: #026d9c;
+        width: 300px;
+        height: 60px;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 1;
+        text-align: center;
+        color: #fff;
+        border-radius: 38px;
+        border: none;
+        max-width: 100%;
+        outline: 2px solid #002bff;
+    }
+</style>
+
+
+
